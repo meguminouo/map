@@ -1,13 +1,27 @@
-export default function TaskList({ tasks }) {
+'use client';
+import Link from "next/link";
+import { use } from "react";
+
+export default function TaskList({ tasks, onDelete }) {
     return (
         <div className="space-y-2">
-            {tasks.map((task, index) => (
+            {tasks.map((task) => (
                 <li
-                    key={index}
-                    className="border p-2 rounded"
-                
+                    key={task.id}
+                    className="border p-2 rounded flex justify-between items-center"
                 >
-                    {task}
+                    <Link
+                        href={`/task/${task.id}`}
+                        className="text-blue-500 hover:underline"
+                    >
+                        {task.title}
+                    </Link>
+                    <button
+                        className="text-red-500"
+                        onClick={() => onDelete(task.id)}
+                    >
+                        Delete
+                    </button>
                 </li>
             ))}
         </div>
