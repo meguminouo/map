@@ -26,4 +26,4 @@ export default function TaskList({ tasks, onDelete }) {
             ))}
         </div>
     );
-}
+}   
