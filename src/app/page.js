@@ -42,8 +42,8 @@ export default function Home() {
     setNextId(nextId + 1);                    // 更新下一個任務的 ID
     localStorage.setItem("tasks", JSON.stringify(updatedTasks)); // 儲存任務列表到 localStorage
   };
-  const handledelete = (index) => {
-    const newTask = tasks.filter((_, i) => i !== index); // 使用 filter 過濾掉要刪除的任務
+  const handledelete = (id) => {
+    const newTask = tasks.filter((task) => task.id !== id); // 使用 filter 過濾掉要刪除的任務
     setTasks(newTask); // 更新任務列表狀態
     localStorage.setItem("tasks", JSON.stringify(newTask)); // 儲存更新後的任務列表到 localStorage
   }
