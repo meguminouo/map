@@ -52,7 +52,12 @@ export default function Home() {
     // 主要容器，使用 Tailwind CSS 設置內邊距
     <main className="p-4 max-w-md mx-auto">
       {/* 標題 */}
-      <h1 className="text-2xl font-bold">Task Board</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Task Board</h1>
+        <Link href="/metro" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+          捷運資訊
+        </Link>
+      </div>
 
       {/* 輸入區域容器 */}
       <div className="flex gap-2 mb-4">
