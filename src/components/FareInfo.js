@@ -54,24 +54,27 @@ export default function FareInfo({ fromStation, toStation }) {
     // Debug log
     console.log('Raw Fare Data:', fareData);
 
+    if (!fareData || fareData.length === 0) {
+        return (
+            <div className="text-gray-500 text-center py-4">
+                無法取得票價資訊
+            </div>
+        );
+    }
+
+    // 使用API回傳的票價資料
+    const standardPrice = fareData[0].Fares[0].Price;
+
     // 整理票價資料，按照票種分類
     const ticketTypes = {
-        standard: { label: '全票', price: null },
-        senior: { label: '敬老票', price: null },
-        child: { label: '孩童票', price: null },
-        student: { label: '學生票', price: null },
-        disability: { label: '愛心票', price: null }
+        standard: { label: '全票', price: standardPrice },
+        senior: { label: '敬老票', price: Math.floor(standardPrice * 0.5) },
+        child: { label: '孩童票', price: Math.floor(standardPrice * 0.5) },
+        student: { label: '學生票', price: Math.floor(standardPrice * 0.8) },
+        disability: { label: '愛心票', price: Math.floor(standardPrice * 0.5) }
     };
 
-    // 暫無法取得即時票價資訊，顯示基本票價資訊
-    const standardPrice = 20; // 基本票價
-
-    ticketTypes.standard.price = standardPrice;
-    ticketTypes.senior.price = Math.floor(standardPrice * 0.5);
-    ticketTypes.child.price = Math.floor(standardPrice * 0.5);
-    ticketTypes.student.price = Math.floor(standardPrice * 0.8);
-    ticketTypes.disability.price = Math.floor(standardPrice * 0.5);
-
+    console.log('API票價資料:', fareData);
     console.log('計算結果:', ticketTypes);
 
     return (
